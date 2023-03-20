@@ -1,63 +1,84 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import CityInput from './CityInput';
-import ErrorMessage from './ErrorMessage';
+import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import CityForm from './CityForm';
 import CityData from './CityData';
+import ErrorMessage from './ErrorMessage';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       city: '',
-      cityData: {},
+      latitude: '',
+      longitude: '',
       error: false,
       errorMessage: ''
-    }
+    };
   }
 
-  handleCityInput = (event) => {
+  handleCityChange = (event) => {
     this.setState({
       city: event.target.value
-    })
+    });
   }
 
-  getCityData = async (event) => {
+  handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
-      let cityDataFromAxios = await axios.get(url);
+      const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`;
+      const response = await axios.get(url);
 
       this.setState({
-        cityData: cityDataFromAxios.data[0],
-        error: false
+        latitude: response.data[0].lat,
+        longitude: response.data[0].lon,
+        error: false,
+        errorMessage: ''
       });
-
     } catch (error) {
       this.setState({
         error: true,
         errorMessage: error.message
-      })
+      });
     }
   }
 
   render() {
-    const { cityData, error, errorMessage } = this.state;
+    const { city, latitude, longitude, error, errorMessage } = this.state;
+
+    const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${latitude},${longitude}&zoom=13`;
 
     return (
-      <>
-        <h1>API CALLS</h1>
+      <div className="App">
+        <Container>
+          <h1 className="text-center mt-4">City Explorer</h1>
 
-        <CityInput handleCityInput={this.handleCityInput} getCityData={this.getCityData} />
-
-        {
-          error
-            ? <ErrorMessage message={errorMessage} />
-            : <CityData data={cityData} />
-        }
-      </>
+          <Row className="justify-content-center mt-4">
+            <Col md={8}>
+              <CityForm
+                city={city}
+                handleCityChange={this.handleCityChange}
+                handleFormSubmit={this.handleFormSubmit}
+              />
+              {error && <ErrorMessage message={errorMessage} />}
+              {latitude && longitude && (
+                <CityData
+                  city={city}
+                  latitude={latitude}
+                  longitude={longitude}
+                  mapUrl={mapUrl}
+                />
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
 
 export default App;
+
