@@ -3,9 +3,7 @@ import { Card } from 'react-bootstrap';
 
 class CityData extends Component {
   render() {
-    const { city, latitude, longitude } = this.props;
-
-    const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${latitude},${longitude}&zoom=13`;
+    const { city, latitude, longitude, mapUrl } = this.props;
 
     return (
       <Card className="mt-4">
