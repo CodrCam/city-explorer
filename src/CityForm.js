@@ -14,11 +14,13 @@ class CityForm extends Component {
       city: event.target.value
     });
   }
-
+  
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.city);
+    this.props.handleFormSubmit();
   }
+  
+  
 
   render() {
     return (
@@ -34,5 +36,3 @@ class CityForm extends Component {
 }
 
 export default CityForm;
-
-

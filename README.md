@@ -1,31 +1,41 @@
-# Project Name
+# Cities Location
 
-**Author**: Your Name Goes Here
+**Author**: Cameron Griffin
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+
+This app allows a user to enter a city name into a form, and then displays information about the city, including its latitude and longitude and a static map of the area. The app uses the LocationIQ API to retrieve the latitude and longitude information, and then uses that information to generate the map. The app is built using React and the React Bootstrap library for styling.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+
+1. Enter a city name in the search field and click the "Explore!" button.
+2. The app will display the city name, latitude, and longitude, along with a map of the city.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+The City Explorer application is a web application designed to allow users to search for and explore cities around the world. The application is built using React.js, a popular front-end JavaScript library for building user interfaces.
+
+The application architecture is based on the Model-View-Controller (MVC) design pattern, where the model manages the data, the view renders the UI, and the controller manages the interaction between the model and the view.
+
+The application is divided into three main components:
+
+App.js: This is the main component of the application and serves as the controller. It is responsible for managing the state of the application and for passing data between the other components. It includes the form component, the data component, and the error message component. It also makes use of the Axios library to handle HTTP requests to the LocationIQ API.
+CityForm.js: This is a child component of App.js and serves as the view for the form. It includes an input field where users can enter a city name, and a submit button to trigger the API request.
+CityData.js: This is a child component of App.js and serves as the view for the city data. It includes a map image showing the location of the city, as well as the latitude and longitude coordinates of the city.
+The application uses several libraries and technologies, including React.js, Axios for making HTTP requests, React Bootstrap for styling the UI, and the LocationIQ API for retrieving location data.
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+03-20-2023 7:07pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-Name of feature: ________________________________
+Name of feature: Created data and app JS to pull from an API and print a map and cordinates.
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 2 hours
 
-Start time: _____
+Start time: 1:30
 
-Finish time: _____
+Finish time: 7
 
-Actual time needed to complete: _____
+Actual time needed to complete: 5.5hrs
