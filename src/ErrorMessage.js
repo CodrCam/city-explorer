@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Alert } from 'react-bootstrap';
 
-class ErrorMessage extends React.Component {
+class ErrorMessage extends Component {
   render() {
     const { message } = this.props;
-
     return (
-      <p>{message}</p>
+      <Alert variant="danger" className="mt-4">{message}</Alert>
     );
   }
 }
