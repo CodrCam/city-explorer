@@ -4,15 +4,17 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CityData from './CityData';
+import Weather from './Weather';
 import ErrorMessage from './ErrorMessage';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
+    city: '',
       latitude: '',
       longitude: '',
+      forecasts: [],
       error: false,
       errorMessage: ''
     };
@@ -28,13 +30,18 @@ class App extends Component {
     event.preventDefault();
     try {
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`;
-
+  
       let response = await axios.get(url);
-
+  
+      const weatherUrl = `http://localhost:3001/weather?searchQuery=${this.state.city}`;
+  
+      let weatherResponse = await axios.get(weatherUrl);
+  
       this.setState({
         city: this.state.city,
         latitude: response.data[0].lat,
         longitude: response.data[0].lon,
+        weather: weatherResponse.data,
         error: false,
         errorMessage: ''
       });
@@ -45,9 +52,10 @@ class App extends Component {
       });
     }
   }
+  
 
   render() {
-    const { city, latitude, longitude, error, errorMessage } = this.state;
+    const { city, latitude, longitude, forecasts, error, errorMessage } = this.state;
 
     const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${latitude},${longitude}&zoom=12`;
 
@@ -66,6 +74,9 @@ class App extends Component {
                 <Button variant="primary" type="submit">Explore!</Button>
               </Form>
               {error && <ErrorMessage message={errorMessage} />}
+              {forecasts.length > 0 && (
+                <Weather forecasts={forecasts} />
+              )}
               {latitude && longitude && (
                 <CityData
                   city={city}
