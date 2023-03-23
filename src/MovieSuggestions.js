@@ -11,7 +11,7 @@ function MovieSuggestions(props) {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/movies', { params: { city: props.city } });
+        const response = await axios.get('https://city-explorer-api-server.onrender.com/movies', { params: { city: props.city } });
 
 
 
