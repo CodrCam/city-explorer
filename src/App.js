@@ -37,7 +37,7 @@ function App() {
     }
   };
 
-  const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${latitude},${longitude}&zoom=12}`;
+  const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${latitude},${longitude}&zoom=14}`;
 
   return (
     <div className="App">

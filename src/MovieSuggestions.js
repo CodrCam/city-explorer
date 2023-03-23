@@ -11,9 +11,9 @@ function MovieSuggestions(props) {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const url = `http://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&query=${props.city}`;
+        const response = await axios.get('http://localhost:3001/movies', { params: { city: props.city } });
 
-        let response = await axios.get(url);
+
 
         setMovies(response.data.results);
         setError(false);
@@ -55,4 +55,3 @@ function MovieSuggestions(props) {
 }
 
 export default MovieSuggestions;
-
