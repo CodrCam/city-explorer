@@ -30,12 +30,44 @@ The application uses several libraries and technologies, including React.js, Axi
 
 ## Credit and Collaborations
 
+- TA help with getting api key from movieDB
+
 Name of feature: Created data and app JS to pull from an API and print a map and cordinates.
 
 Estimate of time needed to complete: 2 hours
 
-Start time: 1:30
+Start time: 1:30 pm
 
-Finish time: 7
+Finish time: 7 pm
 
 Actual time needed to complete: 5.5hrs
+
+## Lab 7
+
+Name of feature: Weather Details
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 6 pm
+
+Finish time: 11:50pm
+
+Actual time needed to complete: DNF
+
+![MovieDataBaseImage](/src/img/WeatherDB.png)
+
+## Lab 8
+
+Name of feature: Add Movie DB
+
+Estimate of time needed to complete: 5
+
+Start time: 1 pm
+
+Finish time: 10:30
+
+Actual time needed to complete: 27 hrs
+
+### Diagram
+
+![MovieDataBaseImage](/src/img/MovieDB.png)
