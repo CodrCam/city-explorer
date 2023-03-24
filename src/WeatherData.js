@@ -8,7 +8,7 @@ function WeatherData({ latitude, longitude }) {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await axios.get('https://city-explorer-api-server.onrender.com/weather', { params: { latitude, longitude } });
+        const response = await axios.get('https://city-explorer-api-server.onrender.com/weather/forecast', { params: { latitude, longitude } });
 
 
         setForecast(response.data);
